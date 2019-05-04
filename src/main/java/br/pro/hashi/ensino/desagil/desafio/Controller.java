@@ -1,6 +1,8 @@
 package br.pro.hashi.ensino.desagil.desafio;
 
 import br.pro.hashi.ensino.desagil.desafio.model.Model;
+import br.pro.hashi.ensino.desagil.desafio.model.CpuPlayer;
+import br.pro.hashi.ensino.desagil.desafio.model.HumanPlayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,21 +20,40 @@ public class Controller implements KeyListener, ActionListener {
 
     @Override
     public void keyTyped(KeyEvent event) {
-        System.out.println("keyTyped");
     }
 
     @Override
     public void keyPressed(KeyEvent event) {
-        System.out.println("keyPressed");
+        HumanPlayer humanPlayer = model.getHumanPlayer();
+
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                humanPlayer.moveUp();
+                break;
+            case KeyEvent.VK_RIGHT:
+                humanPlayer.moveRight();
+                break;
+            case KeyEvent.VK_DOWN:
+                humanPlayer.moveDown();
+                break;
+            case KeyEvent.VK_LEFT:
+                humanPlayer.moveLeft();
+                break;
+        }
+        view.repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent event) {
-        System.out.println("keyReleased");
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("actionPerformed");
+        CpuPlayer cpuPlayer = model.getCpuPlayer();
+
+        cpuPlayer.move();
+
+        view.repaint();
     }
 }
