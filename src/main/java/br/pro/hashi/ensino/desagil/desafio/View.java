@@ -72,6 +72,14 @@ public class View extends JPanel {
             g.drawImage(image, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
         });
 
+        if (model.getWinner() == model.getCpuPlayer()) {
+            g.setColor(Color.RED);
+            g.drawString("Computador venceu", 0, 20);
+        } else if (model.getWinner() == model.getHumanPlayer()) {
+            g.setColor(Color.GREEN);
+            g.drawString("Você venceu", 0, 20);
+        }
+
         // Linha necessária para evitar atrasos
         // de renderização em sistemas Linux.
         getToolkit().sync();
